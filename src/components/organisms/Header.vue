@@ -13,6 +13,33 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style scoped>
+header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-bottom: 3px solid black;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  letter-spacing: 1.2px;
+  padding: 3px 10px;
+  border: 1px solid transparent;
+}
+
+nav a.router-link-exact-active {
+  border: 2px solid black;
+  border-radius: 12px;
+}
+
 /* header {
   line-height: 1.5;
   max-height: 100vh;
