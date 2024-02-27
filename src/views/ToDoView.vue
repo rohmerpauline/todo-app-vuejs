@@ -6,26 +6,28 @@ const filterSelectedOption = ref()
 </script>
 
 <template>
-  <div class="to-do">
-    <h1>Tasks</h1>
-    <TaskFilters v-model:filterOption="filterSelectedOption" />
-    <TaskCardList v-model:filterOption="filterSelectedOption" />
-  </div>
+  <main>
+    <div>
+      <h1>Tasks</h1>
+      <TaskFilters v-model:filterOption="filterSelectedOption" />
+      <TaskCardList v-model:filterOption="filterSelectedOption" />
+    </div>
+  </main>
 </template>
 
-<style>
-.to-do {
+<style scoped>
+main {
   margin: 20px 5%;
 }
 
 @media (min-width: 800px) {
-  .to-do {
+  main {
     margin: 20px 15%;
   }
 }
 
 @media (min-width: 1024px) {
-  .to-do {
+  main {
     margin: 20px 30%;
   }
 }
