@@ -35,7 +35,8 @@ nav a {
   border: 1px solid transparent;
 }
 
-nav a.router-link-exact-active {
+nav a.router-link-exact-active,
+nav a:hover {
   border: 2px solid black;
   border-radius: 12px;
 }

@@ -2,11 +2,13 @@
 import TaskFilters from '@/components/organisms/TaskFilters.vue'
 import TaskCardList from '../components/organisms/TaskCardList.vue'
 import { ref } from 'vue'
+import AddTaskButton from '@/components/atoms/AddTaskButton.vue'
 const filterSelectedOption = ref()
 </script>
 
 <template>
   <main>
+    <AddTaskButton />
     <div>
       <h1>Tasks</h1>
       <TaskFilters v-model:filterOption="filterSelectedOption" />
@@ -15,20 +17,4 @@ const filterSelectedOption = ref()
   </main>
 </template>
 
-<style scoped>
-main {
-  margin: 20px 5%;
-}
-
-@media (min-width: 800px) {
-  main {
-    margin: 20px 15%;
-  }
-}
-
-@media (min-width: 1024px) {
-  main {
-    margin: 20px 30%;
-  }
-}
-</style>
+<style scoped></style>
