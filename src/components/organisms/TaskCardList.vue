@@ -1,3 +1,9 @@
+<template>
+  <div class="task-card-list">
+    <TaskCard v-for="task in sortedTask" :key="task.id" :task="task" />
+  </div>
+</template>
+
 <script setup>
 import TaskCard from '../molecules/TaskCard.vue'
 import { ref, watch } from 'vue'
@@ -20,12 +26,6 @@ watch(selectedOption, (newOption) => {
   sortedTask.value = sortTasksByOption(taskStore.tasks, newOption)
 })
 </script>
-
-<template>
-  <div class="task-card-list">
-    <TaskCard v-for="task in sortedTask" :key="task.id" :task="task" />
-  </div>
-</template>
 
 <style scoped>
 .task-card-list {
