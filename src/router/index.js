@@ -7,15 +7,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      redirect: '/dashboard'
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/to-do',
+      name: 'to-do',
+      component: () => import('../views/ToDoView.vue')
+    },
+    {
+      path: '/done',
+      name: 'done',
+      component: () => import('../views/DoneView.vue')
+    },
+    {
+      path: '/create-task/:id?',
+      name: 'create-task',
+      component: () => import('../views/CreateTaskView.vue')
     }
   ]
 })
