@@ -79,6 +79,9 @@ export const useTaskStore = defineStore('taskStore', {
     selectedFilter: ''
   }),
   getters: {
+    todo(state) {
+      return state.tasks.filter((task) => !task.isDone)
+    },
     dueToday(state) {
       return state.tasks.filter(
         (task) => new Date(task.deadline).toDateString() === new Date().toDateString()
@@ -87,7 +90,37 @@ export const useTaskStore = defineStore('taskStore', {
     outdated(state) {
       const startOfToday = new Date()
       startOfToday.setHours(0, 0, 0, 0)
-      return state.tasks.filter((task) => new Date(task.deadline).getTime() < startOfToday)
+      return state.tasks.filter(
+        (task) => new Date(task.deadline).getTime() < startOfToday && !task.isDone
+      )
+    },
+    done(state) {
+      return state.tasks.filter((task) => task.isDone)
+    }
+  },
+  actions: {
+    addTask(task) {
+      const lastTask = this.tasks[this.tasks.length - 1]
+      const newId = lastTask.id + 1
+      const newTask = {
+        ...task,
+        id: newId,
+        isDone: false
+      }
+      this.tasks.push(newTask)
+    },
+    modifyTask(modifiedTask) {
+      const task = this.tasks.find((task) => task.id === modifiedTask.id)
+      task.title = modifiedTask.title
+      task.deadline = modifiedTask.deadline
+    },
+
+    deleteTask(id) {
+      this.tasks = this.tasks.filter((task) => task.id !== id)
+    },
+    toggleIsDone(id) {
+      const task = this.tasks.find((task) => task.id === id)
+      task.isDone = !task.isDone
     }
   }
 })

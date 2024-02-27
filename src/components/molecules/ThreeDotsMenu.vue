@@ -1,9 +1,34 @@
+<template>
+  <div v-click-outside="closeTaskModify" class="three-dots-container">
+    <div class="three-dots" @click="toggleTaskModify">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="task-modify" v-if="showTaskModify">
+      <p @click="taskStore.deleteTask(id)">Delete</p>
+      <p @click="handleOnModify">Modify</p>
+    </div>
+  </div>
+</template>
+
 <script setup>
-defineProps({
-  task: Object
-})
+const { id } = defineProps(['id'])
+import { useTaskStore } from '@/stores/TaskStore'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const taskStore = useTaskStore()
 const showTaskModify = ref(false)
+const router = useRouter()
+
+const handleOnModify = () => {
+  router.push({
+    name: 'create-task',
+    params: {
+      id: id
+    }
+  })
+}
 
 const toggleTaskModify = () => {
   showTaskModify.value = !showTaskModify.value
@@ -13,20 +38,6 @@ const closeTaskModify = () => {
   showTaskModify.value = false
 }
 </script>
-
-<template>
-  <div v-click-outside="closeTaskModify" class="three-dots-container">
-    <div class="three-dots" @click="toggleTaskModify">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-    <div class="task-modify" v-if="showTaskModify">
-      <p>Delete</p>
-      <p>Modify</p>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .three-dots-container {

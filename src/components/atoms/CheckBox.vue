@@ -1,15 +1,18 @@
-<script setup>
-defineProps({
-  id: Number
-})
-</script>
-
 <template>
-  <div class="checkbox-container">
-    <input class="checkbox-input" type="checkbox" :name="id" :id="id" />
+  <div class="checkbox-container" @click="taskStore.toggleIsDone(id)">
+    <input class="checkbox-input" type="checkbox" :name="id" :id="id" :checked="isDone" />
     <label :for="id" class="checkbox-mark"></label>
   </div>
 </template>
+
+<script setup>
+import { useTaskStore } from '@/stores/TaskStore'
+const taskStore = useTaskStore()
+defineProps({
+  id: Number,
+  isDone: Boolean
+})
+</script>
 
 <style scoped>
 .checkbox-container {

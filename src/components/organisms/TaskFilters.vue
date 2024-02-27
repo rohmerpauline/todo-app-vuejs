@@ -1,3 +1,20 @@
+<template>
+  <div class="task-filters">
+    <p>Filter by</p>
+    <div class="select-container">
+      <div class="select-element" @click="toggleDropDown">
+        <span>{{ selectedOption }}</span>
+        <font-awesome-icon icon="chevron-down" class="chevron-icon" />
+      </div>
+      <div class="drop-down-content" v-if="showDropDown">
+        <div v-for="option in selectOptions" @click="updateSelectedOption(option)">
+          {{ option }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { onMounted, ref } from 'vue'
 
@@ -20,23 +37,6 @@ onMounted(() => {
   }
 })
 </script>
-
-<template>
-  <div class="task-filters">
-    <p>Filter by</p>
-    <div class="select-container">
-      <div class="select-element" @click="toggleDropDown">
-        <span>{{ selectedOption }}</span>
-        <font-awesome-icon icon="chevron-down" class="chevron-icon" />
-      </div>
-      <div class="drop-down-content" v-if="showDropDown">
-        <div v-for="option in selectOptions" @click="updateSelectedOption(option)">
-          {{ option }}
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .task-filters {

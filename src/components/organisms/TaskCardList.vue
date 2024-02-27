@@ -13,17 +13,28 @@ const sortedTask = ref()
 const selectedOption = defineModel('filterOption')
 
 const sortTasksByOption = (tasks, option) => {
+  const filteredTasks = tasks.filter((task) => !task.isDone)
+
   if (option === 'Closest Deadline First') {
-    return tasks.slice().sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
+    return filteredTasks.slice().sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
   } else if (option === 'Farthest Deadline First') {
-    return tasks.slice().sort((a, b) => new Date(b.deadline) - new Date(a.deadline))
+    return filteredTasks.slice().sort((a, b) => new Date(b.deadline) - new Date(a.deadline))
   } else {
     return tasks
   }
 }
 
-watch(selectedOption, (newOption) => {
-  sortedTask.value = sortTasksByOption(taskStore.tasks, newOption)
+watch([() => taskStore.tasks, () => selectedOption.value], ([newTasks, newOption]) => {
+  sortedTask.value = sortTasksByOption(newTasks, newOption)
+})
+
+taskStore.tasks.forEach((task) => {
+  watch(
+    () => task.isDone,
+    () => {
+      sortedTask.value = sortTasksByOption(taskStore.tasks, selectedOption.value)
+    }
+  )
 })
 </script>
 

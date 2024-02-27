@@ -1,3 +1,14 @@
+<template>
+  <div class="task-card">
+    <div class="tast-element">
+      <CheckBox :id="task.id" :isDone="task.isDone" />
+      <p>{{ task.title }}</p>
+      <ThreeDotsMenu :id="task.id" />
+    </div>
+    <p class="task-deadline">{{ formatDate(task.deadline) }}</p>
+  </div>
+</template>
+
 <script setup>
 import CheckBox from '../atoms/CheckBox.vue'
 import ThreeDotsMenu from './ThreeDotsMenu.vue'
@@ -13,22 +24,13 @@ const formatDate = (dateString) => {
 }
 </script>
 
-<template>
-  <div class="task-card">
-    <div class="tast-element">
-      <CheckBox :id="task.taskId" />
-      <p>{{ task.title }}</p>
-      <ThreeDotsMenu />
-    </div>
-    <p class="task-deadline">{{ formatDate(task.deadline) }}</p>
-  </div>
-</template>
-
 <style scoped>
 .task-card {
   border: 1px solid black;
   border-radius: 8px;
   padding: 10px 15px;
+  box-shadow: 0px 5px 0px -3px rgba(0, 0, 0, 0.93);
+  width: 100%;
 }
 
 .tast-element {
