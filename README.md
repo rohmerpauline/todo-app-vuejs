@@ -1,13 +1,5 @@
 # To Do App Vue Js Project
 
-![Home page](./src/assets/home-page.png)
-
-![To Do Page](./src/assets/to-do-page.png)
-
-![Done page](./src/assets/done-page.png)
-
-![Create Task](./src/assets/create-task-page.png)
-
 ## Project Overview:
 
 The brief for this project has been created as a self-imposed challenge to elevate my skills in Vue.js development.
